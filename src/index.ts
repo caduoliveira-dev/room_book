@@ -2,6 +2,7 @@ import { Elysia } from "elysia";
 import { openapi } from "@elysiajs/openapi";
 import { z } from "zod";
 import { roomController } from "./endpoints/rooms/RoomController";
+import { bookingController } from "./endpoints/bookings/BookingController";
 import { auth, OpenAPI } from "./lib/auth";
 
 const app = new Elysia()
@@ -18,6 +19,7 @@ const app = new Elysia()
     })
   )
   .use(roomController)
+  .use(bookingController)
   .listen(3000);
 
 console.log(

@@ -19,6 +19,19 @@ export const rooms = pgTable("rooms", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+export const bookings = pgTable("bookings", {
+  id: uuid().primaryKey().defaultRandom(),
+  roomId: uuid("room_id")
+    .notNull()
+    .references(() => rooms.id, { onDelete: "cascade" }),
+  userId: uuid("user_id")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  date_booking: varchar().notNull(),
+  hours: varchar().array().notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 export const users = pgTable("users", {
   id: uuid("id").primaryKey().defaultRandom(),
   name: text("name").notNull(),
