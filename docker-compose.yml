@@ -1,4 +1,13 @@
 services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgres://postgres:root@db:5432/room_book
+    depends_on:
+      - db
+    restart: always
   db:
     image: postgres:alpine
     ports:
