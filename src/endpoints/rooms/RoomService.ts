@@ -10,6 +10,7 @@ export class RoomService {
     amenities: string[];
     imageUrl: string;
     location: string;
+    createdBy: string;
   }) {
     // (Futuro: validações, regras, eventos, etc.)
     return this.repo.create(data);

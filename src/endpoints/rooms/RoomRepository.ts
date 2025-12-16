@@ -10,6 +10,7 @@ export class RoomRepository {
     amenities: string[];
     imageUrl: string;
     location: string;
+    createdBy: string;
   }) {
     const [created] = await db.insert(rooms).values(data).returning();
     return created;

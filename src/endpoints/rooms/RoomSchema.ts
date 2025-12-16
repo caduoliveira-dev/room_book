@@ -7,6 +7,7 @@ export const createRoomSchema = z.object({
   amenities: z.array(z.string()),
   imageUrl: z.url(),
   location: z.string(),
+  createdBy: z.uuid(),
 });
 
 export const roomResponseSchema = z.object({
@@ -17,5 +18,6 @@ export const roomResponseSchema = z.object({
   amenities: z.array(z.string()),
   imageUrl: z.url(),
   location: z.string(),
+  createdBy: z.uuid(),
   createdAt: z.date(),
 });

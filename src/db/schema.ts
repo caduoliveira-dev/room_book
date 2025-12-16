@@ -16,6 +16,9 @@ export const rooms = pgTable("rooms", {
   amenities: varchar().array().notNull(),
   imageUrl: text("image_url").notNull(),
   location: text().notNull(),
+  createdBy: uuid("created_by")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
