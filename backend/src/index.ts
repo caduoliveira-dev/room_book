@@ -4,6 +4,7 @@ import { z } from "zod";
 import { roomController } from "./endpoints/rooms/RoomController";
 import { bookingController } from "./endpoints/bookings/BookingController";
 import { auth, OpenAPI } from "./lib/auth";
+import { cors } from "@elysiajs/cors";
 
 const app = new Elysia()
   .mount(auth.handler)
@@ -20,6 +21,7 @@ const app = new Elysia()
   )
   .use(roomController)
   .use(bookingController)
+  .use(cors())
   .listen(3000);
 
 console.log(
