@@ -4,15 +4,15 @@ import { BookingRepository } from "./BookingRepository";
 import { BookingService } from "./BookingService";
 import { betterAuth } from "../../macros/auth";
 
-const service = new BookingService(new BookingRepository());
+const serviceBooking = new BookingService(new BookingRepository());
 
 export const bookingController = new Elysia()
   .use(betterAuth)
-  .decorate("service", service)
+  .decorate("serviceBooking", serviceBooking)
   .post(
     "/bookings",
-    async ({ body, user, service }) => {
-      return await service.createBooking({
+    async ({ body, user, serviceBooking }) => {
+      return await serviceBooking.createBooking({
         ...body,
         userId: user.id,
       });
@@ -31,8 +31,8 @@ export const bookingController = new Elysia()
   )
   .get(
     "/bookings",
-    async ({ service }) => {
-      return await service.getAllBookings();
+    async ({ serviceBooking }) => {
+      return await serviceBooking.getAllBookings();
     },
     {
       auth: true,
@@ -47,8 +47,8 @@ export const bookingController = new Elysia()
   )
   .get(
     "/bookings/:id",
-    async ({ params: { id }, service }) => {
-      return await service.getBookingById(id);
+    async ({ params: { id }, serviceBooking }) => {
+      return await serviceBooking.getBookingById(id);
     },
     {
       auth: true,

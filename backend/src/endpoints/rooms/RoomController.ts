@@ -4,15 +4,15 @@ import { RoomRepository } from "./RoomRepository";
 import { RoomService } from "./RoomService";
 import { betterAuth } from "../../macros/auth";
 
-const service = new RoomService(new RoomRepository());
+const serviceRoom = new RoomService(new RoomRepository());
 
 export const roomController = new Elysia()
   .use(betterAuth)
-  .decorate("service", service)
+  .decorate("serviceRoom", serviceRoom)
   .post(
     "/rooms",
-    async ({ body, user, service }) => {
-      return await service.createRoom({
+    async ({ body, user, serviceRoom }) => {
+      return await serviceRoom.createRoom({
         ...body,
         createdBy: user.id,
       });
@@ -31,8 +31,8 @@ export const roomController = new Elysia()
   )
   .get(
     "/rooms",
-    async ({ service }) => {
-      return await service.getAllRooms();
+    async ({ serviceRoom }) => {
+      return await serviceRoom.getAllRooms();
     },
     {
       auth: true,
@@ -47,8 +47,8 @@ export const roomController = new Elysia()
   )
   .get(
     "/rooms/:id",
-    async ({ params: { id }, service }) => {
-      return await service.getRoomById(id);
+    async ({ params: { id }, serviceRoom }) => {
+      return await serviceRoom.getRoomById(id);
     },
     {
       auth: true,
