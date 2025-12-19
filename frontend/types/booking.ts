@@ -11,11 +11,7 @@ export interface Booking {
   id: string;
   roomId: string;
   userId: string;
-  userName: string;
-  title: string;
-  date: string;
-  startTime: string;
-  endTime: string;
+  date_booking: string;
+  hours: string[];
   createdAt: string;
-  status: "confirmed" | "cancelled";
 }

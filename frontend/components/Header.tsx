@@ -14,10 +14,10 @@ export default function Header() {
           </p>
         </div>
         <div className="space-x-4 sm:block hidden text-muted-foreground">
-          <Link href="#" className="hover:text-primary hover:underline">
+          <Link href="/home" className="hover:text-primary hover:underline">
             Salas
           </Link>
-          <Link href="#" className="hover:text-primary hover:underline">
+          <Link href="/bookings" className="hover:text-primary hover:underline">
             Minhas Reservas
           </Link>
         </div>
